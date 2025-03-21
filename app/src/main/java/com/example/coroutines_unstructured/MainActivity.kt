@@ -37,18 +37,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnDownloadUserData.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch { // Adding a coroutine to execute the task
-                downloadUserData()
+            CoroutineScope(Dispatchers.Main).launch { // Adding a coroutine to execute the task
+//                downloadUserData()
+//                tvUserMessage.text = UserDataManager().getTotalUserCount().toString() // Unstructured Concurrency
+                tvUserMessage.text = UserDataManager2().getTotalUserCount().toString() // Structured Concurrency
             }
-//            downloadUserData()
         }
     }
 
-    private suspend fun downloadUserData() {
+    private fun downloadUserData() {
         for (i in 1..200000) {
-            withContext(Dispatchers.Main) {
-                tvUserMessage.text = "Downloading user $i in ${Thread.currentThread().name}"
-            }
+            Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
         }
     }
 }
