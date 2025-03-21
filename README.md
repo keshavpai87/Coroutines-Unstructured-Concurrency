@@ -26,3 +26,4 @@ Now when we run the application, when we click teh DownloadUserDAta button, afte
 
 ![image](https://github.com/user-attachments/assets/ec1d1c9c-5c09-4daa-9b0e-2e7815cfbac9)
 
+This doesn't mean unstructured concurrency is ok with async builders as still there are problems. As we know, in android, if there is an error occuring in a function, the function throws an exception. So we can catch the exception in the caller function and handle the situation. In unstructured concurrency, weather we use launch or async builders, there is no way to properly handle exceptions. So, even though it seems to be working well in some scenarios, it is not recommended to use unstructured concurrency.
